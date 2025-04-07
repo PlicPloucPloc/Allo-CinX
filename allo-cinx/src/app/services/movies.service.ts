@@ -13,14 +13,20 @@ export class MoviesService {
   getMovies(): Observable<Movie[]> {
     return this.httpClient.get<Movie[]>(this.url);
   }
+
   addMovie(movie:Movie):Observable<Movie>{
     return this.httpClient.post<Movie>(this.url,movie);
   }
-  deleteMovie(id: number): Observable<void> { 
+
+  deleteMovie(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.url}/${id}`);
   }
+
   updateMovie(movie:Movie):Observable<Movie>{
     return this.httpClient.put<Movie>(`${this.url}/${movie.id}`, movie);
   }
 
+  getMovieById(id: number): Observable<Movie> {
+    return this.httpClient.get<Movie>(`${this.url}/${id}`);
+  }
 }
