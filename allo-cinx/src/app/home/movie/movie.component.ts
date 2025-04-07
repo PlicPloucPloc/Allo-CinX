@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { Movie } from '../../models/movies';
-import { NgClass, NgStyle, SlicePipe } from '@angular/common';
+import { DatePipe, NgClass, NgStyle, SlicePipe } from '@angular/common';
 
 @Component({
   selector: 'app-movie',
   standalone: true,
-  imports: [NgClass, NgStyle, SlicePipe],
+  imports: [NgClass, NgStyle, SlicePipe, DatePipe],
   templateUrl: './movie.component.html',
   styleUrl: './movie.component.scss'
 })
