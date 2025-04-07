@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { Movie } from '../../models/movies';
-import { NgClass, NgStyle, SlicePipe } from '@angular/common';
+import { DatePipe, NgClass, NgStyle } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-movie',
   standalone: true,
-  imports: [NgClass, NgStyle, SlicePipe, RouterLink],
+  imports: [NgClass, NgStyle, RouterLink, DatePipe],
   templateUrl: './movie.component.html',
   styleUrl: './movie.component.scss'
 })

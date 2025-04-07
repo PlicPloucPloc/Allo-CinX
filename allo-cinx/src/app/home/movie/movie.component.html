@@ -29,7 +29,8 @@
       <h5 class="card-title mb-0">{{ movie.title }}</h5>
       <span class="badge bg-primary rounded-pill">{{ movie.rate }}/10</span>
     </div>
-
-    <!--<p class="card-text flex-grow-1">{{ movie.synopsis | slice: 0 : 200 }}{{ movie.synopsis.length > 200 ? '...' : '' }}</p>-->
+    <div class="d-flex justify-content-between align-items-start mb-2">
+      <span class="">{{ movie.releaseDate | date: 'yyyy' }}</span>
+    </div>
   </div>
 </div>
