@@ -1,0 +1,56 @@
+<!-- new-movie.component.html -->
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="mb-0">Nouveau film</h1>
+      <button class="btn btn-secondary" (click)="goBackToList()">Retour liste</button>
+    </div>
+
+    <div class="mb-3">
+    <label for="title" class="form-label">Titre</label>
+    <input 
+        type="text" 
+        class="form-control" 
+        id="title" 
+        [(ngModel)]="movie.title"
+        >
+    </div>
+
+    <div class="mb-3">
+    <label for="director" class="form-label">Réalisateur</label>
+    <input 
+        type="text" 
+        class="form-control" 
+        id="director" 
+        [(ngModel)]="movie.director"
+        >
+    </div>
+
+    <div class="mb-3">
+    <label for="releaseDate" class="form-label">Date de Sortie</label>
+    <div class="input-group">
+        <input 
+        type="date" 
+        class="form-control" 
+        id="releaseDate" 
+        placeholder="mm/dd/yyyy"
+        [(ngModel)]="movie.releaseDate"
+        >
+        
+    </div>
+    </div>
+
+    <div class="mb-4">
+    <label for="synopsis" class="form-label">Synopsis</label>
+    <textarea 
+        class="form-control" 
+        id="synopsis" 
+        rows="5" 
+        [(ngModel)]="movie.synopsis"
+        
+        >
+    </textarea>
+    </div>
+
+    <button  class="btn btn-warning" (click)="addMovie()">Ajouter</button>
+
+  </div>

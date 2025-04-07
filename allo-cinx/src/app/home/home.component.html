@@ -1,0 +1,47 @@
+<!-- home.component.html -->
+<div class="container py-5">
+    <header class="mb-5">
+      <h1 class="text-center mb-4">Movie Collection</h1>
+      
+      <!-- Search and Filter Controls -->
+      <div class="row mb-4">
+        <div class="col-md-6 mb-3 mb-md-0">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search movies..." #searchInput (keyup)="searchMovies(searchInput.value)">
+            <button class="btn btn-primary" type="button">
+              <i class="bi bi-search"></i> Search
+            </button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="d-flex justify-content-md-end">
+            <select class="form-select me-2" style="max-width: 150px;" (change)="sortMovies($event)">
+              <option value="title">Sort by Title</option>
+              <option value="rate">Sort by Rating</option>
+              <option value="newest">Newest First</option>
+            </select>
+            <button class="btn btn-outline-secondary" (click)="toggleView()">
+              <i class="bi" [ngClass]="isGridView ? 'bi-list' : 'bi-grid'"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+  
+    <!-- Movies Grid -->
+    <div [ngClass]="isGridView ? 'row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4' : ''">
+      @if ((filteredMovies$ | async)?.length) {
+        @for (movie of filteredMovies$ | async; track movie.id) {
+          <div [ngClass]="isGridView ? 'col' : 'mb-4'">
+            <app-movie [movie]="movie" [viewMode]="isGridView ? 'grid' : 'list'"></app-movie>
+          </div>
+        }
+      } @else {
+        <div class="col-12 text-center py-5">
+          <div class="alert alert-info">
+            <i class="bi bi-film me-2"></i> No movies found. Try adjusting your search or filters.
+          </div>
+        </div>
+      }
+    </div>
+  </div>
