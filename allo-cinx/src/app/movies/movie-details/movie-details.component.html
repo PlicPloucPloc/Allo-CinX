@@ -1,1 +1,23 @@
-<p>movie-details works!</p>
+<div class="container mt-5" *ngIf="movie">
+  <div class="card mb-4 shadow">
+    <div class="row g-0">
+      <div class="col-md-4" *ngIf="movie.image">
+        <img [src]="'http://localhost:8080/movies/' + movie.id + '/image'" class="img-fluid rounded-start" alt="{{ movie.title }}" />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h3 class="card-title">{{ movie.title }}</h3>
+          <p class="card-text"><strong>Director:</strong> {{ movie.director }}</p>
+          <p class="card-text">
+            <strong>Release Date:</strong>
+            {{ movie.releaseDate | date: 'longDate' }}
+          </p>
+          <p class="card-text"><strong>Rating:</strong> {{ movie.rate ?? 'N/A' }}</p>
+          <p class="card-text"><strong>Synopsis:</strong></p>
+          <p class="card-text text-muted">{{ movie.synopsis }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="btn btn-secondary" routerLink="/">← Back to Movies List</a>
+</div>

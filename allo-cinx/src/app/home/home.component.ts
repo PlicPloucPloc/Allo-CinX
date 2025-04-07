@@ -1,5 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { AsyncPipe, NgClass } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
 import { MoviesService } from '../services/movies.service';
 import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { Movie } from '../models/movies';
@@ -8,15 +8,13 @@ import { MovieComponent } from './movie/movie.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [AsyncPipe, MovieComponent, NgClass],
+  imports: [AsyncPipe, MovieComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   private readonly moviesService = inject(MoviesService);
   movies$: Observable<Movie[]> = this.moviesService.getMovies();
-  //filteredMovies$: Observable<Movie[]>;
-  isGridView = true;
   searchTerm$ = new BehaviorSubject<string>('');
   sortCriteria$ = new BehaviorSubject<string>('title');
   filteredMovies$!: Observable<Movie[]>;
@@ -45,10 +43,6 @@ export class HomeComponent implements OnInit {
 
   sortMovies(event: any) {
     this.sortCriteria$.next(event.target.value);
-  }
-
-  toggleView() {
-    this.isGridView = !this.isGridView;
   }
 
   private sortMoviesList(movies: Movie[], criteria: string): Movie[] {
