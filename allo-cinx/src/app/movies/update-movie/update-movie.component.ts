@@ -1,7 +1,7 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Movie } from '../../models/movies';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MoviesService } from '../../services/movies.service';
 
 @Component({
@@ -12,37 +12,42 @@ import { MoviesService } from '../../services/movies.service';
   styleUrl: './update-movie.component.scss',
 })
 export class UpdateMovieComponent {
-  movieService = inject(MoviesService);
-  constructor(private router: Router) {}
-  movie: { id: number; title: string; director: string; releaseDate: string; synopsis: string } = {
-    id: 0,
+  private readonly moviesService = inject(MoviesService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+
+  movie: Movie = {
     title: '',
     director: '',
-    releaseDate: '',
+    releaseDate: new Date(),
     synopsis: '',
+    id: undefined,
+    rate: undefined,
+    image: undefined,
   };
+
+  releaseDate: string = '';
+
   ngOnInit(): void {
-    const detectedMovie = localStorage.getItem('toUpdate');
-    if (detectedMovie === null) {
-      return;
-    }
-    const parsedMovie: Movie = JSON.parse(detectedMovie);
-    this.movie.id = parsedMovie.id ?? 0;
-    this.movie.title = parsedMovie.title;
-    this.movie.director = parsedMovie.director;
-    this.movie.synopsis = parsedMovie.synopsis;
-    const date = new Date(parsedMovie.releaseDate);
-    if (!isNaN(date.getTime())) {
-      this.movie.releaseDate = date.toISOString().split('T')[0];
-    } else {
-      this.movie.releaseDate = ''; // Handle invalid dates
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+
+    if (id) {
+      this.moviesService.getMovieById(id).subscribe((movie: Movie) => {
+        this.movie = movie;
+
+        var releaseDate = new Date(this.movie.releaseDate);
+        if (!isNaN(releaseDate.getTime())) {
+          this.releaseDate = releaseDate.toISOString().split('T')[0];
+        }
+      });
     }
   }
+
   goBackToList(): void {
     this.router.navigate(['/movies']);
   }
   updateMovie(): void {
-    this.movieService.updateMovie({ ...this.movie, releaseDate: new Date(this.movie.releaseDate) }).subscribe(() => {
+    this.moviesService.updateMovie({ ...this.movie, releaseDate: new Date(this.releaseDate) }).subscribe(() => {
       this.router.navigate(['/movies']);
     });
   }

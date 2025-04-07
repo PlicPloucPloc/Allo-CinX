@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Movie } from '../../models/movies';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { MoviesService } from '../../services/movies.service';
 
 @Component({

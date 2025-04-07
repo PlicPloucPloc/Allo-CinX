@@ -1,8 +1,8 @@
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Movie } from '../models/movies';
 import { take } from 'rxjs';
 import { MoviesService } from '../services/movies.service';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -14,8 +14,9 @@ import { DatePipe } from '@angular/common';
 })
 export class MoviesComponent {
   private readonly moviesService = inject(MoviesService);
-  constructor(private router: Router) {}
+
   movies!: Movie[];
+
   deleteMovie(id: number): void {
     this.moviesService
       .deleteMovie(id)
@@ -25,10 +26,5 @@ export class MoviesComponent {
 
   ngOnInit(): void {
     this.moviesService.getMovies().subscribe((movies) => (this.movies = movies));
-  }
-  updateMovie(id: number): void {
-    //we get the product
-    localStorage.setItem('toUpdate', JSON.stringify(this.movies[id]));
-    this.router.navigate(['/update-movie']);
   }
 }
