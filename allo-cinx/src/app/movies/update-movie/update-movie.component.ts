@@ -9,26 +9,24 @@ import { MoviesService } from '../../services/movies.service';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './update-movie.component.html',
-  styleUrl: './update-movie.component.scss'
+  styleUrl: './update-movie.component.scss',
 })
 export class UpdateMovieComponent {
   movieService = inject(MoviesService);
-  constructor(private router:Router){
-    
-  }
-  movie: { id:number, title: string; director: string; releaseDate: string; synopsis: string } = {
+  constructor(private router: Router) {}
+  movie: { id: number; title: string; director: string; releaseDate: string; synopsis: string } = {
     id: 0,
     title: '',
     director: '',
     releaseDate: '',
-    synopsis: ''
+    synopsis: '',
   };
-  ngOnInit():void{
-    const detectedMovie = localStorage.getItem("toUpdate");
+  ngOnInit(): void {
+    const detectedMovie = localStorage.getItem('toUpdate');
     if (detectedMovie === null) {
       return;
     }
-    const parsedMovie:Movie = JSON.parse(detectedMovie)
+    const parsedMovie: Movie = JSON.parse(detectedMovie);
     this.movie.id = parsedMovie.id ?? 0;
     this.movie.title = parsedMovie.title;
     this.movie.director = parsedMovie.director;
@@ -39,15 +37,13 @@ export class UpdateMovieComponent {
     } else {
       this.movie.releaseDate = ''; // Handle invalid dates
     }
-
   }
-  goBackToList():void{
-    this.router.navigate(['/movies'])
+  goBackToList(): void {
+    this.router.navigate(['/movies']);
   }
-  updateMovie():void{
-    this.movieService.updateMovie({ ...this.movie, releaseDate: new Date(this.movie.releaseDate) }).subscribe(()=>{
-      this.router.navigate(['/movies'])
-
+  updateMovie(): void {
+    this.movieService.updateMovie({ ...this.movie, releaseDate: new Date(this.movie.releaseDate) }).subscribe(() => {
+      this.router.navigate(['/movies']);
     });
   }
 }
