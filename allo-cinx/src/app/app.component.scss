@@ -1,0 +1,20 @@
+/* The layout container takes the full height of the viewport */
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* The main content should grow and take up available space */
+.main-content {
+  flex-grow: 1;
+  height: 100%;
+}
+
+/* Footer stays at the bottom */
+app-footer {
+  background-color: #fecc00;
+  width: 100%;
+  padding: 2px 0;
+  text-align: center;
+}
