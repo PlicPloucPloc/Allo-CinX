@@ -1,3 +1,31 @@
 nav {
   background-color: #fecc00
 }
+
+/* Style for active tab */
+.active-tab {
+  font-weight: bold;
+}
+
+/* Hover effect for non-active tabs */
+.nav-item.nav-link {
+  position: relative;
+  display: inline-block;
+}
+
+/* Apply hover effect only for non-active tabs */
+.nav-item.nav-link:not(.active-tab)::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #007bff; /* Color for the underline */
+  transition: width 0.3s ease;
+}
+
+/* When hovering over a non-active tab */
+.nav-item.nav-link:not(.active-tab):hover::after {
+  width: 100%;
+}
