@@ -28,7 +28,7 @@ export class HomeComponent {
         let filtered = movies;
         if (searchTerm.trim() !== '') {
           const term = searchTerm.toLowerCase();
-          filtered = movies.filter((movie) => movie.title.toLowerCase().includes(term) || movie.synopsis.toLowerCase().includes(term));
+          filtered = movies.filter((movie) => movie.title.toLowerCase().includes(term));
         }
 
         // Then sort
