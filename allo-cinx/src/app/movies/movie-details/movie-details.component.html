@@ -1,12 +1,18 @@
-<div class="container mt-5" *ngIf="movie">
+<div class="container mt-3" *ngIf="movie">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="mb-3">{{movie.title}}</h1>
+    <a class="btn btn-secondary" routerLink="/">← Retour à la liste</a>
+  </div>
+
+
   <div class="card mb-4 shadow">
     <div class="row g-0">
       <div class="col-md-4" *ngIf="movie.image">
         <img [src]="'http://localhost:8080/movies/' + movie.id + '/image'" class="img-fluid rounded-start" alt="{{ movie.title }}" />
       </div>
+
       <div class="col-md-8">
         <div class="card-body">
-          <h3 class="card-title">{{ movie.title }}</h3>
           <p class="card-text"><strong>Director:</strong> {{ movie.director }}</p>
           <p class="card-text">
             <strong>Release Date:</strong>
@@ -19,5 +25,4 @@
       </div>
     </div>
   </div>
-  <a class="btn btn-secondary" routerLink="/">← Back to Movies List</a>
 </div>

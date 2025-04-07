@@ -1,22 +1,21 @@
 <!-- home.component.html -->
 <div class="container py-5">
   <header class="mb-5">
-    <h1 class="text-center mb-4">Movie Collection</h1>
+    <h1 class="text-center mb-4">Liste des films</h1>
 
     <!-- Search and Filter Controls -->
     <div class="row mb-4">
       <div class="col-md-6 mb-3 mb-md-0">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search movies..." #searchInput (keyup)="searchMovies(searchInput.value)" />
-          <button class="btn btn-primary" type="button"><i class="bi bi-search"></i> Search</button>
+          <input type="text" class="form-control" placeholder="Recherche..." #searchInput (keyup)="searchMovies(searchInput.value)" />
         </div>
       </div>
       <div class="col-md-6">
         <div class="d-flex justify-content-md-end">
           <select class="form-select me-2" style="max-width: 150px" (change)="sortMovies($event)">
-            <option value="title">Sort by Title</option>
-            <option value="rate">Sort by Rating</option>
-            <option value="newest">Newest First</option>
+            <option value="title">Trier par titre</option>
+            <option value="rate">Les mieux notés</option>
+            <option value="newest">Les plus récents</option>
           </select>
         </div>
       </div>

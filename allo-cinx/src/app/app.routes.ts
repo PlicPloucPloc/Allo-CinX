@@ -7,8 +7,8 @@ import { MovieDetailsComponent } from './movies/movie-details/movie-details.comp
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'movie/:id', component: MovieDetailsComponent },
   { path: 'movies', component: MoviesComponent },
-  { path: 'movies/:id', component: MovieDetailsComponent },
   { path: 'add-movie', component: AddMoviesComponent },
   { path: 'update-movie', component: UpdateMovieComponent },
 ];
