@@ -18,20 +18,17 @@
             <option value="rate">Sort by Rating</option>
             <option value="newest">Newest First</option>
           </select>
-          <button class="btn btn-outline-secondary" (click)="toggleView()">
-            <i class="bi" [ngClass]="isGridView ? 'bi-list' : 'bi-grid'"></i>
-          </button>
         </div>
       </div>
     </div>
   </header>
 
   <!-- Movies Grid -->
-  <div [ngClass]="isGridView ? 'row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4' : ''">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
     @if ((filteredMovies$ | async)?.length) {
       @for (movie of filteredMovies$ | async; track movie.id) {
-        <div [ngClass]="isGridView ? 'col' : 'mb-4'">
-          <app-movie [movie]="movie" [viewMode]="isGridView ? 'grid' : 'list'"></app-movie>
+        <div class="col">
+          <app-movie [movie]="movie"></app-movie>
         </div>
       }
     } @else {
