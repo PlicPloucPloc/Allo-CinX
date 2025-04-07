@@ -13,12 +13,12 @@
 
       <div class="col-md-8">
         <div class="card-body">
-          <p class="card-text"><strong>Director:</strong> {{ movie.director }}</p>
+          <p class="card-text"><strong>Réalisateur:</strong> {{ movie.director }}</p>
           <p class="card-text">
-            <strong>Release Date:</strong>
+            <strong>Date de sortie:</strong>
             {{ movie.releaseDate | date: 'longDate' }}
           </p>
-          <p class="card-text"><strong>Rating:</strong> {{ movie.rate ?? 'N/A' }}</p>
+          <p class="card-text"><strong>Note:</strong> {{ movie.rate ?? 'N/A' }}</p>
           <p class="card-text"><strong>Synopsis:</strong></p>
           <p class="card-text text-muted">{{ movie.synopsis }}</p>
         </div>
